@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:lifestyle/screens/introSlider.dart';
 import 'package:lifestyle/screens/login.dart';
 
 class splash extends StatefulWidget {
