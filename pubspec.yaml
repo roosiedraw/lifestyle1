@@ -69,6 +69,10 @@ flutter:
      - assets/images/introslider1.jpg
      - assets/images/introslider2.jpg
      - assets/images/introslider3.jpg
+     - assets/images/lgbt.png
+     - assets/images/phone.png
+     - assets/images/slim-body.png
+     - assets/images/lips.png
 
   
   #   - images/a_dot_ham.jpeg

@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:lifestyle/utils/constants.dart';
+import 'package:lifestyle/widgets/registerpage1.dart';
 import 'package:progress_indicators/progress_indicators.dart';
 
 /*
 1.sayfa(couple,bull,lgbtq,hetero)
-2.sayfa(isim)
+2.sayfa(isim,email)
 3.sayfa(boy kilo,yaş,ten rengi,dövme,piercing,sigara&alkol,vücut tipi,)
 4.sayfa(interest)
-5.sayfa(email)
+
 6.payment
 7.bilgilendirme tanıtım.şartlar koşullar.
  */
@@ -19,9 +21,16 @@ class Register extends StatefulWidget {
 
 class _RegisterState extends State<Register> {
   int pageIndex = 0;
+
+  PageController pageController = PageController(
+    initialPage: 0,
+    keepPage: false,
+  );
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: mainThemeColor,
       body: SafeArea(
           child: SizedBox(
         width: MediaQuery.of(context).size.width,
@@ -29,54 +38,56 @@ class _RegisterState extends State<Register> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
+            //Register Screen Top Bar
             Expanded(
               flex: 1,
               child: Container(
+                decoration: BoxDecoration(
+                    border: Border(bottom: BorderSide(color: Colors.black45))),
                 width: MediaQuery.of(context).size.width,
-                color: Colors.amber,
                 child: Padding(
-                  padding: const EdgeInsets.all(2.0),
+                  padding: const EdgeInsets.all(8.0),
                   child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
                       pageIndex != 0
-                          ? Icon(
-                              Icons.home,
-                              size: 15,
+                          ? Image(
+                              image: AssetImage("assets/images/lgbt.png"),
+                              height: 20,
                             )
                           : HeartbeatProgressIndicator(
-                              child: Icon(
-                                Icons.home,
-                                size: 15,
-                              ),
-                            ),
+                              child: Image(
+                              image: AssetImage("assets/images/lgbt.png"),
+                              height: 20,
+                            )),
                       Container(
                           width: 50,
-                          color: Colors.white,
                           child: TweenAnimationBuilder(
                             tween: Tween(
                                 end:
                                     0.0), // change this from 0.0 to 1.0 and hot reload
-                            duration: const Duration(seconds: 2),
+                            duration: const Duration(seconds: 4),
                             builder: (BuildContext context, double value,
                                 Widget? child) {
                               return LinearProgressIndicator(
+                                  borderRadius: BorderRadius.circular(30),
+                                  color: Color.fromARGB(255, 133, 3, 46),
+                                  minHeight: 8,
                                   value: pageIndex < 1 ? 0 : 1);
                             },
                           )),
                       pageIndex != 1
-                          ? Icon(
-                              Icons.home,
-                              size: 15,
+                          ? Image(
+                              image: AssetImage("assets/images/phone.png"),
+                              height: 20,
                             )
                           : HeartbeatProgressIndicator(
-                              child: Icon(
-                                Icons.home,
-                                size: 15,
-                              ),
-                            ),
+                              child: Image(
+                              image: AssetImage("assets/images/phone.png"),
+                              height: 20,
+                            )),
                       Container(
                           width: 50,
-                          color: Colors.white,
                           child: TweenAnimationBuilder(
                             tween: Tween(
                                 end:
@@ -85,23 +96,24 @@ class _RegisterState extends State<Register> {
                             builder: (BuildContext context, double value,
                                 Widget? child) {
                               return LinearProgressIndicator(
+                                  borderRadius: BorderRadius.circular(30),
+                                  color: Color.fromARGB(255, 133, 3, 46),
+                                  minHeight: 8,
                                   value: pageIndex < 2 ? 0 : 1);
                             },
                           )),
                       pageIndex != 2
-                          ? Icon(
-                              Icons.home,
-                              size: 15,
+                          ? Image(
+                              image: AssetImage("assets/images/slim-body.png"),
+                              height: 20,
                             )
                           : HeartbeatProgressIndicator(
-                              child: Icon(
-                                Icons.home,
-                                size: 15,
-                              ),
-                            ),
+                              child: Image(
+                              image: AssetImage("assets/images/slim-body.png"),
+                              height: 20,
+                            )),
                       Container(
                           width: 50,
-                          color: Colors.white,
                           child: TweenAnimationBuilder(
                             tween: Tween(
                                 end:
@@ -110,121 +122,93 @@ class _RegisterState extends State<Register> {
                             builder: (BuildContext context, double value,
                                 Widget? child) {
                               return LinearProgressIndicator(
+                                  borderRadius: BorderRadius.circular(30),
+                                  color: Color.fromARGB(255, 133, 3, 46),
+                                  minHeight: 8,
                                   value: pageIndex < 3 ? 0 : 1);
                             },
                           )),
                       pageIndex != 3
-                          ? Icon(
-                              Icons.home,
-                              size: 15,
+                          ? Image(
+                              image: AssetImage("assets/images/lips.png"),
+                              height: 20,
                             )
                           : HeartbeatProgressIndicator(
-                              child: Icon(
-                                Icons.home,
-                                size: 15,
-                              ),
-                            ),
-                      Container(
-                          width: 50,
-                          color: Colors.white,
-                          child: TweenAnimationBuilder(
-                            tween: Tween(
-                                end:
-                                    0.0), // change this from 0.0 to 1.0 and hot reload
-                            duration: const Duration(seconds: 2),
-                            builder: (BuildContext context, double value,
-                                Widget? child) {
-                              return LinearProgressIndicator(
-                                  value: pageIndex < 4 ? 0 : 1);
-                            },
-                          )),
-                      pageIndex != 4
-                          ? Icon(
-                              Icons.home,
-                              size: 15,
-                            )
-                          : HeartbeatProgressIndicator(
-                              child: Icon(
-                                Icons.home,
-                                size: 15,
-                              ),
-                            ),
-                      Container(
-                          width: 50,
-                          color: Colors.white,
-                          child: TweenAnimationBuilder(
-                            tween: Tween(
-                                end:
-                                    0.0), // change this from 0.0 to 1.0 and hot reload
-                            duration: const Duration(seconds: 2),
-                            builder: (BuildContext context, double value,
-                                Widget? child) {
-                              return LinearProgressIndicator(
-                                  value: pageIndex < 5 ? 0 : 1);
-                            },
-                          )),
-                      pageIndex != 5
-                          ? Icon(
-                              Icons.home,
-                              size: 15,
-                            )
-                          : HeartbeatProgressIndicator(
-                              child: Icon(
-                                Icons.home,
-                                size: 15,
-                              ),
-                            ),
-                      Container(
-                          width: 50,
-                          color: Colors.white,
-                          child: TweenAnimationBuilder(
-                            tween: Tween(
-                                end:
-                                    0.0), // change this from 0.0 to 1.0 and hot reload
-                            duration: const Duration(seconds: 2),
-                            builder: (BuildContext context, double value,
-                                Widget? child) {
-                              return LinearProgressIndicator(
-                                  value: pageIndex < 6 ? 0 : 1);
-                            },
-                          )),
-                      pageIndex != 6
-                          ? Icon(
-                              Icons.home,
-                              size: 15,
-                            )
-                          : HeartbeatProgressIndicator(
-                              child: Icon(
-                                Icons.home,
-                                size: 15,
-                              ),
-                            ),
+                              child: Image(
+                              image: AssetImage("assets/images/lips.png"),
+                              height: 20,
+                            )),
                     ],
                   ),
                 ),
               ),
             ),
+
+            //Register Screen Pages
             Expanded(
-              flex: 12,
+              flex: 10,
               child: Container(
-                color: Colors.blue,
-              ),
-            ),
-            Expanded(
-              flex: 2,
-              child: Container(
-                color: Colors.red,
-                child: ElevatedButton(
-                    onPressed: () {
+                child: PageView(
+                    physics: NeverScrollableScrollPhysics(),
+                    onPageChanged: (value) {
                       setState(() {
-                        pageIndex++;
-                        pageIndex == 6
-                            ? print("devamke") //Ödeme sayfasına devam
-                            : pageIndex;
-                        print(pageIndex);
+                        pageIndex;
                       });
                     },
-                    child: Text("git")),
+                    controller: pageController,
+                    children: [
+                      RegisterPage1(),
+                      Center(child: Text("2")),
+                      Center(child: Text("3")),
+                      Center(child: Text("4"))
+                    ]),
+              ),
+            ),
+
+            //Register Screen Buttons
+            Expanded(
+              flex: 2,
+              child: Padding(
+                padding: const EdgeInsets.all(18.0),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    ElevatedButton(
+                        style:
+                            ElevatedButton.styleFrom(fixedSize: Size(50, 30)),
+                        onPressed: () {
+                          setState(() {
+                            pageIndex--;
+                            pageIndex == 0
+                                ? print("gerilo") //Ödeme sayfasına devam
+                                : pageIndex;
+                            pageController.animateToPage(pageIndex,
+                                curve: Curves.ease,
+                                duration: Duration(seconds: 1));
+
+                            print(pageIndex);
+                          });
+                        },
+                        child: Icon(Icons.arrow_back_ios_new)),
+                    ElevatedButton(
+                        style:
+                            ElevatedButton.styleFrom(fixedSize: Size(50, 30)),
+                        onPressed: () {
+                          setState(() {
+                            pageIndex++;
+                            pageIndex == 4
+                                ? print("devamke") //Ödeme sayfasına devam
+                                : pageIndex;
+                            pageController.animateToPage(pageIndex,
+                                curve: Curves.ease,
+                                duration: Duration(seconds: 1));
+
+                            print(pageIndex);
+                          });
+                        },
+                        child: Icon(Icons.arrow_forward_ios)),
+                  ],
+                ),
               ),
             )
           ],
