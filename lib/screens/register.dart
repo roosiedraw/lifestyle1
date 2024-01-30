@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:lifestyle/utils/constants.dart';
+import 'package:lifestyle/widgets/registerPage2.dart';
+import 'package:lifestyle/widgets/registerPage3.dart';
 import 'package:lifestyle/widgets/registerpage1.dart';
 import 'package:progress_indicators/progress_indicators.dart';
 
 /*
 1.sayfa(couple,bull,lgbtq,hetero)
 2.sayfa(isim,email)
-3.sayfa(boy kilo,yaş,ten rengi,dövme,piercing,sigara&alkol,vücut tipi,)
+3.sayfa(foto,boy kilo,yaş,ten rengi,dövme,piercing,sigara&alkol,vücut tipi,)
 4.sayfa(interest)
 
 6.payment
@@ -21,6 +23,7 @@ class Register extends StatefulWidget {
 
 class _RegisterState extends State<Register> {
   int pageIndex = 0;
+  bool isvisible = false;
 
   PageController pageController = PageController(
     initialPage: 0,
@@ -158,8 +161,8 @@ class _RegisterState extends State<Register> {
                     controller: pageController,
                     children: [
                       RegisterPage1(),
-                      Center(child: Text("2")),
-                      Center(child: Text("3")),
+                      RegisterPage2(),
+                      RegisterPage3(),
                       Center(child: Text("4"))
                     ]),
               ),
@@ -173,23 +176,29 @@ class _RegisterState extends State<Register> {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    ElevatedButton(
-                        style:
-                            ElevatedButton.styleFrom(fixedSize: Size(50, 30)),
-                        onPressed: () {
-                          setState(() {
-                            pageIndex--;
-                            pageIndex == 0
-                                ? print("gerilo") //Ödeme sayfasına devam
-                                : pageIndex;
-                            pageController.animateToPage(pageIndex,
-                                curve: Curves.ease,
-                                duration: Duration(seconds: 1));
+                    Visibility(
+                      visible: isvisible,
+                      child: ElevatedButton(
+                          style:
+                              ElevatedButton.styleFrom(fixedSize: Size(50, 30)),
+                          onPressed: () {
+                            setState(() {
+                              pageIndex--;
+                              pageIndex == 0
+                                  ? print("s") //Ödeme sayfasına devam
+                                  : pageIndex;
+                              pageIndex != 0
+                                  ? print("s") //Ödeme sayfasına devam
+                                  : isvisible = false;
+                              pageController.animateToPage(pageIndex,
+                                  curve: Curves.ease,
+                                  duration: Duration(seconds: 1));
 
-                            print(pageIndex);
-                          });
-                        },
-                        child: Icon(Icons.arrow_back_ios_new)),
+                              print(pageIndex);
+                            });
+                          },
+                          child: Icon(Icons.arrow_back_ios_new)),
+                    ),
                     ElevatedButton(
                         style:
                             ElevatedButton.styleFrom(fixedSize: Size(50, 30)),
@@ -199,6 +208,7 @@ class _RegisterState extends State<Register> {
                             pageIndex == 4
                                 ? print("devamke") //Ödeme sayfasına devam
                                 : pageIndex;
+                            isvisible = true;
                             pageController.animateToPage(pageIndex,
                                 curve: Curves.ease,
                                 duration: Duration(seconds: 1));
