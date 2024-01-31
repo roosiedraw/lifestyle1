@@ -58,11 +58,10 @@ class _RegisterState extends State<Register> {
                               image: AssetImage("assets/images/lgbt.png"),
                               height: 20,
                             )
-                          : HeartbeatProgressIndicator(
-                              child: Image(
+                          : Image(
                               image: AssetImage("assets/images/lgbt.png"),
-                              height: 20,
-                            )),
+                              height: 30,
+                            ),
                       Container(
                           width: 50,
                           child: TweenAnimationBuilder(
@@ -84,11 +83,10 @@ class _RegisterState extends State<Register> {
                               image: AssetImage("assets/images/phone.png"),
                               height: 20,
                             )
-                          : HeartbeatProgressIndicator(
-                              child: Image(
+                          : Image(
                               image: AssetImage("assets/images/phone.png"),
-                              height: 20,
-                            )),
+                              height: 30,
+                            ),
                       Container(
                           width: 50,
                           child: TweenAnimationBuilder(
@@ -110,11 +108,10 @@ class _RegisterState extends State<Register> {
                               image: AssetImage("assets/images/slim-body.png"),
                               height: 20,
                             )
-                          : HeartbeatProgressIndicator(
-                              child: Image(
+                          : Image(
                               image: AssetImage("assets/images/slim-body.png"),
-                              height: 20,
-                            )),
+                              height: 30,
+                            ),
                       Container(
                           width: 50,
                           child: TweenAnimationBuilder(
@@ -136,11 +133,10 @@ class _RegisterState extends State<Register> {
                               image: AssetImage("assets/images/lips.png"),
                               height: 20,
                             )
-                          : HeartbeatProgressIndicator(
-                              child: Image(
+                          : Image(
                               image: AssetImage("assets/images/lips.png"),
-                              height: 20,
-                            )),
+                              height: 30,
+                            ),
                     ],
                   ),
                 ),

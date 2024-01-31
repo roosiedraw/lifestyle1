@@ -13,12 +13,6 @@ class _RegisterPage1State extends State<RegisterPage1> {
   final List<String> items = [
     'Couple',
     'Bull',
-    'Gay',
-    'Lesbian',
-    'Transgender',
-    'Pansexual',
-    'Queer',
-    'Other(Please inform us about your sexual orientation)',
   ];
   String? selectedValue;
   @override
