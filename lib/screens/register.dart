@@ -3,7 +3,6 @@ import 'package:lifestyle/utils/constants.dart';
 import 'package:lifestyle/widgets/registerPage2.dart';
 import 'package:lifestyle/widgets/registerPage3.dart';
 import 'package:lifestyle/widgets/registerpage1.dart';
-import 'package:progress_indicators/progress_indicators.dart';
 
 /*
 1.sayfa(couple,bull,lgbtq,hetero)
