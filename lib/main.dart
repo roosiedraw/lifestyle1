@@ -21,20 +21,20 @@ class MyApp extends StatelessWidget {
         },
         debugShowCheckedModeBanner: false,
         title: 'Flutter Demo',
-        localizationsDelegates: [
+        localizationsDelegates: const [
           AppLocalizations.delegate,
           GlobalMaterialLocalizations.delegate,
           GlobalWidgetsLocalizations.delegate,
           GlobalCupertinoLocalizations.delegate,
         ],
-        supportedLocales: [
+        supportedLocales: const [
           // 'en' is the language code. We could optionally provide a
           // country code as the second param, e.g.
           // Locale('en', 'US'). If we do that, we may want to
           // provide an additional app_en_US.arb file for
           // region-specific translations.
-          const Locale('en', ''),
-          const Locale('tr', ''),
+          Locale('en', ''),
+          Locale('tr', ''),
         ],
         theme: ThemeData(
           textTheme: GoogleFonts.latoTextTheme(

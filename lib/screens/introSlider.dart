@@ -4,7 +4,7 @@ import 'package:introduction_slider/source/presentation/widgets/buttons.dart';
 import 'package:introduction_slider/source/presentation/widgets/dot_indicator.dart';
 import 'package:introduction_slider/source/presentation/widgets/introduction_slider_item.dart';
 import 'package:lifestyle/screens/login.dart';
-import 'package:lifestyle/screens/register.dart';
+import 'package:lifestyle/screens/register/register.dart';
 import 'package:lifestyle/utils/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';

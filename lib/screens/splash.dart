@@ -21,7 +21,7 @@ class _splashState extends State<splash> {
       body: Container(
         width: MediaQuery.of(context).size.width,
         height: MediaQuery.of(context).size.height,
-        child: Center(
+        child: const Center(
           child: Icon(Icons.heart_broken),
         ),
       ),
@@ -35,7 +35,7 @@ class _splashState extends State<splash> {
     Navigator.pushReplacement(
       context,
       MaterialPageRoute(
-        builder: (context) => Login(),
+        builder: (context) => const Login(),
       ),
     );
 

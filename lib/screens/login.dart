@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:intl_phone_field/intl_phone_field.dart';
-import 'package:lifestyle/screens/register.dart';
+import 'package:lifestyle/screens/register/register.dart';
 import 'package:lifestyle/utils/constants.dart';
 import 'package:sign_in_button/sign_in_button.dart';
 
