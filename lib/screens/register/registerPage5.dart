@@ -60,7 +60,7 @@ class _RegisterPage5State extends State<RegisterPage5> {
 
   Future getImages() async {
     final pickedFile = await imgpicker.pickMultiImage(
-        imageQuality: 100, // To set quality of images
+        imageQuality: 3, // To set quality of images
         maxHeight: 1000, // To set maxheight of images that you want in your app
         maxWidth: 1000); // To set maxheight of images that you want in your app
     List<XFile> xfilePick = pickedFile;
@@ -88,12 +88,12 @@ class _RegisterPage5State extends State<RegisterPage5> {
         imageQuality: 100, // To set quality of images
         maxHeight: 1000, // To set maxheight of images that you want in your app
         maxWidth: 1000); // To set maxheight of images that you want in your app
-    List<XFile> xfilePick = pickedFile;
 
+    List<XFile> xfilePick = pickedFile;
     // if atleast 1 images is selected it will add
     // all images in selectedImages
     // variable so that we can easily show them in UI
-    if (xfilePick.isNotEmpty) {
+    if (xfilePick.isNotEmpty && xfilePick.length < 4) {
       for (var i = 0; i < xfilePick.length; i++) {
         selectedImagesNaughty.add(File(xfilePick[i].path));
       }
@@ -129,14 +129,14 @@ class _RegisterPage5State extends State<RegisterPage5> {
                             tween: Tween(
                                 end:
                                     0.01), // change this from 0.0 to 1.0 and hot reload
-                            duration: const Duration(seconds: 1),
+                            duration: const Duration(milliseconds: 500),
                             builder: (BuildContext context, double value,
                                 Widget? child) {
                               return LinearProgressIndicator(
                                   borderRadius: BorderRadius.circular(30),
                                   color: const Color.fromARGB(255, 133, 3, 46),
                                   minHeight: 8,
-                                  value: values5);
+                                  value: values5 + 0.3);
                             },
                           )),
                     ],
@@ -148,6 +148,7 @@ class _RegisterPage5State extends State<RegisterPage5> {
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 Expanded(
+                  flex: 3,
                   child: Container(
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -204,6 +205,7 @@ class _RegisterPage5State extends State<RegisterPage5> {
                                       margin: EdgeInsets.only(top: 5),
                                       child: Icon(
                                         Icons.image,
+                                        color: secondTextColor,
                                       ),
                                     ),
                                     Container(
@@ -211,7 +213,11 @@ class _RegisterPage5State extends State<RegisterPage5> {
                                         top: 4,
                                         left: 10,
                                       ),
-                                      child: Text('Add profle picture'),
+                                      child: Text(
+                                        'Add profile picture',
+                                        style:
+                                            TextStyle(color: secondTextColor),
+                                      ),
                                     ),
                                   ],
                                 ),
@@ -233,13 +239,15 @@ class _RegisterPage5State extends State<RegisterPage5> {
                   ),
                 ),
                 Expanded(
+                  flex: 4,
                   child: Container(
                     child: Column(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
                         Padding(
                           padding: const EdgeInsets.all(8.0),
                           child: Text(
-                            "You can add your casual photos",
+                            "You can add your Casual photos",
                             style: TextStyle(
                                 fontSize: 15,
                                 fontWeight: FontWeight.bold,
@@ -250,41 +258,39 @@ class _RegisterPage5State extends State<RegisterPage5> {
                         ElevatedButton(
                           style: ButtonStyle(
                               backgroundColor:
-                                  MaterialStateProperty.all(Colors.green)),
+                                  MaterialStateProperty.all(secondTextColor)),
                           // TO change button color
-                          child: const Text(
-                              'Select Image from Gallery and Camera'),
+                          child: Icon(Icons.add_photo_alternate_outlined),
                           onPressed: () {
                             getImages();
                           },
                         ),
                         SizedBox(
-                          width:
-                              300.0, // To show images in particular area only
+                          width: 300,
+                          height: 150, // To show images in particular area only
                           child: selectedImages
                                   .isEmpty // If no images is selected
                               ? Container(
                                   decoration: BoxDecoration(
                                       color: Colors.grey.shade200,
                                       borderRadius: BorderRadius.circular(10)),
-                                  child: Padding(
-                                    padding: const EdgeInsets.all(8.0),
-                                    child: const Center(
-                                        child: Column(
-                                      children: [
-                                        Image(
-                                          image: AssetImage(
-                                              "assets/images/profile.png"),
-                                          height: 100,
-                                          width: 100,
-                                        ),
-                                        Text(
-                                          'Please Add Some Photos!',
-                                          style: TextStyle(color: Colors.black),
-                                        ),
-                                      ],
-                                    )),
-                                  ),
+                                  child: const Center(
+                                      child: Column(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceEvenly,
+                                    children: [
+                                      Image(
+                                        image: AssetImage(
+                                            "assets/images/profile.png"),
+                                        height: 50,
+                                        width: 90,
+                                      ),
+                                      Text(
+                                        'Please Add Some Casual Photos!',
+                                        style: TextStyle(color: Colors.black),
+                                      ),
+                                    ],
+                                  )),
                                 )
                               // If atleast 1 images is selected
                               : GridView.builder(
@@ -301,8 +307,49 @@ class _RegisterPage5State extends State<RegisterPage5> {
                                         child: kIsWeb
                                             ? Image.network(
                                                 selectedImages[index].path)
-                                            : Image.file(
-                                                selectedImages[index]));
+                                            : GestureDetector(
+                                                onLongPress: () {
+                                                  print("Foto Sil İŞlemi");
+                                                  showModalBottomSheet(
+                                                      context: context,
+                                                      builder: (BuildContext
+                                                          context) {
+                                                        return SizedBox(
+                                                          height: 100,
+                                                          child: Row(
+                                                            mainAxisAlignment:
+                                                                MainAxisAlignment
+                                                                    .spaceEvenly,
+                                                            children: [
+                                                              TextButton(
+                                                                onPressed: () {
+                                                                  setState(() {
+                                                                    selectedImages
+                                                                        .removeAt(
+                                                                            index);
+                                                                    Navigator.pop(
+                                                                        context);
+                                                                  });
+                                                                },
+                                                                child: Text(
+                                                                    "Delete"),
+                                                              ),
+                                                              TextButton(
+                                                                onPressed: () {
+                                                                  Navigator.pop(
+                                                                      context);
+                                                                },
+                                                                child: Text(
+                                                                    "Cancel"),
+                                                              ),
+                                                            ],
+                                                          ),
+                                                        );
+                                                      });
+                                                },
+                                                child: Image.file(
+                                                    selectedImages[index]),
+                                              ));
                                     // If you are making the web app then you have to
                                     // use image provider as network image or in
                                     // android or iOS it will as file only
@@ -323,9 +370,10 @@ class _RegisterPage5State extends State<RegisterPage5> {
                   ),
                 ),
                 Expanded(
+                  flex: 4,
                   child: Container(
                     child: Column(
-                      mainAxisAlignment: MainAxisAlignment.start,
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
                         Padding(
                           padding: const EdgeInsets.all(8.0),
@@ -349,8 +397,8 @@ class _RegisterPage5State extends State<RegisterPage5> {
                           },
                         ),
                         SizedBox(
-                          width:
-                              300.0, // To show images in particular area only
+                          width: 300,
+                          height: 150, // To show images in particular area only
                           child: selectedImagesNaughty
                                   .isEmpty // If no images is selected
                               ? Container(
@@ -359,12 +407,14 @@ class _RegisterPage5State extends State<RegisterPage5> {
                                       borderRadius: BorderRadius.circular(10)),
                                   child: const Center(
                                       child: Column(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceEvenly,
                                     children: [
                                       Image(
                                         image:
                                             AssetImage("assets/images/ero.png"),
-                                        height: 100,
-                                        width: 100,
+                                        height: 50,
+                                        width: 90,
                                       ),
                                       Text(
                                         'Please Add Some Naughty Photos!',
@@ -389,8 +439,50 @@ class _RegisterPage5State extends State<RegisterPage5> {
                                             ? Image.network(
                                                 selectedImagesNaughty[index]
                                                     .path)
-                                            : Image.file(
-                                                selectedImagesNaughty[index]));
+                                            : GestureDetector(
+                                                onLongPress: () {
+                                                  print("Foto Sil İŞlemi");
+                                                  showModalBottomSheet(
+                                                      context: context,
+                                                      builder: (BuildContext
+                                                          context) {
+                                                        return SizedBox(
+                                                          height: 100,
+                                                          child: Row(
+                                                            mainAxisAlignment:
+                                                                MainAxisAlignment
+                                                                    .spaceEvenly,
+                                                            children: [
+                                                              TextButton(
+                                                                onPressed: () {
+                                                                  setState(() {
+                                                                    selectedImagesNaughty
+                                                                        .removeAt(
+                                                                            index);
+                                                                    Navigator.pop(
+                                                                        context);
+                                                                  });
+                                                                },
+                                                                child: Text(
+                                                                    "Delete"),
+                                                              ),
+                                                              TextButton(
+                                                                onPressed: () {
+                                                                  Navigator.pop(
+                                                                      context);
+                                                                },
+                                                                child: Text(
+                                                                    "Cancel"),
+                                                              ),
+                                                            ],
+                                                          ),
+                                                        );
+                                                      });
+                                                },
+                                                child: Image.file(
+                                                    selectedImagesNaughty[
+                                                        index]),
+                                              ));
                                     // If you are making the web app then you have to
                                     // use image provider as network image or in
                                     // android or iOS it will as file only
@@ -401,6 +493,20 @@ class _RegisterPage5State extends State<RegisterPage5> {
                     ),
                   ),
                 ),
+                ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                        shape: RoundedRectangleBorder(),
+                        fixedSize: Size(MediaQuery.of(context).size.width,
+                            MediaQuery.of(context).size.height * 0.06)),
+                    onPressed: () {
+                      setState(() {
+                        values5 = 0.7;
+                      });
+                    },
+                    child: Text(
+                      "Sign Up",
+                      style: TextStyle(fontSize: 18),
+                    ))
               ],
             )));
   }

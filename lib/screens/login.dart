@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:intl_phone_field/intl_phone_field.dart';
-import 'package:lifestyle/screens/register/register.dart';
+import 'package:lifestyle/auth.dart';
 import 'package:lifestyle/utils/constants.dart';
 import 'package:sign_in_button/sign_in_button.dart';
 
@@ -58,10 +58,7 @@ class _LoginState extends State<Login> {
                       Buttons.google,
                       text: "Sign In With Google",
                       onPressed: () {
-                        Navigator.pushReplacement(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => Register()));
+                        Auth.signInWithGoogle(context: context);
                       },
                     ),
                     TextButton(
